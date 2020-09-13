@@ -6,6 +6,14 @@ public class CartProductsDTO {
 	int id;
 	int productId;
 	int quantity;
+	String productName;
+	
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 	public int getId() {
 		return id;
 	}

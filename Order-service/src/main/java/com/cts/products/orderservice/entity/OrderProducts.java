@@ -15,12 +15,20 @@ public class OrderProducts {
 	int id;
 	int productId;
 	int quantity;
+	String productName;
 	double pricePerItem;
 	double price;
 	
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
+	
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 	public int getId() {
 		return id;
 	}

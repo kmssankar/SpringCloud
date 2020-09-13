@@ -40,6 +40,7 @@ public class OrderDomain {
 			orderProducts.setQuantity(cartproduct.getQuantity());
 			ItemPriceDTO itemPriceDto = priceServiceProxy.getProductPrice(cartproduct.getProductId());
 			orderProducts.setPricePerItem(itemPriceDto.getPrice());
+			orderProducts.setProductName(cartproduct.getProductName());
 			orderProducts.setPrice(itemPriceDto.getPrice()*cartproduct.getQuantity());
 			order.setTotal(order.getTotal()+orderProducts.getPrice());
 			totalItems =totalItems + cartproduct.getQuantity();

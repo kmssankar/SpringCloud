@@ -14,6 +14,7 @@ public class CartProducts {
 	int id;
 	int productId;
 	int quantity;
+	String productName;
 
 	@ManyToOne
 	@JoinColumn(name = "cart_id")
@@ -51,4 +52,11 @@ public class CartProducts {
 		this.cart = cart;
 	}
 
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 }

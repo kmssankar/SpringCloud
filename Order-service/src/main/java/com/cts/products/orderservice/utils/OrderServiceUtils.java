@@ -18,7 +18,7 @@ public class OrderServiceUtils {
 		orderDTO.setTotalItems(order.getTotalItems());
 		orderDTO.setOrderproducts(order.getOrderproducts().stream().map(n -> {	
 				return new OrderProductsDTO(n.getId(), n.getProductId(), n.getQuantity(), n.getPricePerItem(), 
-						n.getPrice());}).collect(Collectors.toList()));
+						n.getPrice(),n.getProductName());}).collect(Collectors.toList()));
 		return orderDTO;
 	}
 

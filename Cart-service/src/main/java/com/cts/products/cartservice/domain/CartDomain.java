@@ -12,11 +12,15 @@ import com.cts.products.cartservice.entities.Cart;
 import com.cts.products.cartservice.entities.CartProducts;
 import com.cts.products.cartservice.repository.CartProductRepository;
 import com.cts.products.cartservice.repository.CartRepository;
+import com.cts.products.cartservice.servicecomm.ProductServiceProxy;
 
 @Service
 public class CartDomain {
 	@Autowired
 	CartRepository cartRepository;
+	
+	@Autowired
+	ProductServiceProxy productServiceProxy;
 	
 	@Autowired 
 	CartProductRepository cartProductRepository;
@@ -29,6 +33,7 @@ public class CartDomain {
 			CartProducts cartProducts = new CartProducts();
 			cartProducts.setProductId(cartpoduct.getProductId());
 			cartProducts.setQuantity(cartpoduct.getQuantity());
+			cartProducts.setProductName(productServiceProxy.getProduct(cartpoduct.getProductId()).getName());
 			cartProducts.setCart(cartTosave);
 			cartproducts.add(cartProducts);
 		}
@@ -44,6 +49,7 @@ public class CartDomain {
 		cartForUpdate.setUser(cart.getUser());
 		for (CartProducts cartpoduct : cart.getCartproducts()) {
 			CartProducts cartProducts = cartProductRepository.findById(cartpoduct.getId()).get();
+			cartProducts.setProductName(productServiceProxy.getProduct(cartpoduct.getProductId()).getName());
 			cartProducts.setProductId(cartpoduct.getProductId());
 			cartProducts.setQuantity(cartpoduct.getQuantity());
 		    cartProductRepository.save(cartProducts);
@@ -67,6 +73,7 @@ public class CartDomain {
 				cartProductsDTO.setId(cartProd.getId());
 				cartProductsDTO.setProductId(cartProd.getProductId());
 				cartProductsDTO.setQuantity(cartProd.getQuantity());
+				cartProductsDTO.setProductName(cartProd.getProductName());
 				cartProductsDTOs.add(cartProductsDTO);
 			}
 			catCartDTO.setCartproducts(cartProductsDTOs);

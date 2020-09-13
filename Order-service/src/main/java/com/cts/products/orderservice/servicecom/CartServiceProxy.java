@@ -11,6 +11,6 @@ import com.cts.products.orderservice.dto.CartDTO;
 @RibbonClient(name ="cart-service")
 public interface CartServiceProxy {
     
-	@GetMapping("/api//cart/{id}")
+	@GetMapping("/api/cart/{id}")
 	CartDTO getCart(@PathVariable int id);
 }

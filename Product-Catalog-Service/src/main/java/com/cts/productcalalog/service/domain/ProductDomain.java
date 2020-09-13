@@ -27,13 +27,14 @@ public class ProductDomain {
 		}
 	}
 
-	public boolean addProduct(Product product) {
+	public Product addProduct(Product product) {
 		try {
+			System.out.println(product.getName()+  product.getPrice()+product.getDescription());
 			Product productTosave = new Product(product.getName(), product.getPrice(),product.getDescription());
 			productRepository.save(productTosave);
-			return true;
+			return productTosave;
 		} catch (Exception e) {
-			return false;
+			return null;
 		}
 	}
 	

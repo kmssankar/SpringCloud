@@ -30,11 +30,12 @@ public class ProductCatalogController {
 	}
 
 	@PostMapping("/product")
-	public String addProduct(Product product) {
-		if (productDomain.addProduct(product)) {
-			return "Added successfully";
+	public Product addProduct(@RequestBody Product product) {
+		Product productsaved = productDomain.addProduct(product);
+		if (productsaved!=null) {
+			return productsaved;
 		} else {
-			return "Error occured while adding product";
+			return new Product();
 		}
 	}
 
