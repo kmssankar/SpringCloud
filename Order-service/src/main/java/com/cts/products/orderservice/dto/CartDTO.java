@@ -2,7 +2,10 @@ package com.cts.products.orderservice.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = CartDTO.class)
 public class CartDTO {
 
 	int id;

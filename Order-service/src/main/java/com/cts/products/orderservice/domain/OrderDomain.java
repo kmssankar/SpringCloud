@@ -12,9 +12,11 @@ import com.cts.products.orderservice.dto.CartProductsDTO;
 import com.cts.products.orderservice.dto.ItemPriceDTO;
 import com.cts.products.orderservice.entity.Order;
 import com.cts.products.orderservice.entity.OrderProducts;
+import com.cts.products.orderservice.mqservices.OrderMQService;
 import com.cts.products.orderservice.repository.OrderRepository;
 import com.cts.products.orderservice.servicecom.CartServiceProxy;
 import com.cts.products.orderservice.servicecom.PriceServiceProxy;
+import com.cts.products.orderservice.utils.OrderServiceUtils;
 
 @Service
 public class OrderDomain {
@@ -24,6 +26,9 @@ public class OrderDomain {
 	
 	@Autowired 
 	PriceServiceProxy priceServiceProxy;
+	
+	@Autowired
+	OrderMQService orderMQService;
 	
 	@Autowired
 	OrderRepository orderRepository;
@@ -52,6 +57,7 @@ public class OrderDomain {
 		order.setOrderDate(new Date()); 
 		order.setUser(cartDto.getUser());
 		Order returnedOrder = orderRepository.save(order);
+		orderMQService.send(OrderServiceUtils.mapOrderToDTO(returnedOrder));
 		return returnedOrder;
 	}
 
