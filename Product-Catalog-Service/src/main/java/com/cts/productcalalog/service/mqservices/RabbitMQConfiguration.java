@@ -1,4 +1,4 @@
-package com.cts.products.orderservice.mqservices;
+package com.cts.productcalalog.service.mqservices;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Binding;
@@ -45,10 +45,11 @@ public class RabbitMQConfiguration {
 		return new Jackson2JsonMessageConverter();
 	}
 
-	@Bean("rabbitTemplate")
-	public AmqpTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
-		final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-		rabbitTemplate.setMessageConverter(jsonMessageConverter());
-		return rabbitTemplate;
-	}
+	/*
+	 * @Bean public AmqpTemplate rabbitTemplate(ConnectionFactory connectionFactory)
+	 * { final RabbitTemplate rabbitTemplate = new
+	 * RabbitTemplate(connectionFactory);
+	 * rabbitTemplate.setMessageConverter(jsonMessageConverter()); return
+	 * rabbitTemplate; }
+	 */
 }
